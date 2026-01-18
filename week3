@@ -1,0 +1,26 @@
+import numpy as py 
+import pandas as pd
+import matplotlib.pyplot as plt
+df=pd.read_csv('data.csv')
+print(df.head())
+
+df['fuel_type'].value_counts()
+
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+df['fuel_type'] = le.fit_transform(df['fuel_type'])
+print(df.head())
+
+plt.figure(figsize=(12,6))
+plt.scatter(x=df['kms_diven'], y=df['selling_price'])
+plt.xlabel('Kms Driven')
+plt.ylabel('Selling Price')
+plt.title('Kms Driven vs Selling Price')
+plt.show()
+
+plt.figure(figsize=(12,6))
+plt.pie(df['fuel_type'].value_counts(), labels=['Petrol', 'Diesel'], autopct='%1.1f%%' , explode=[0.1,0] , pctdistance=0.5)
+plt.title('Fuel Type Distribution')
+plt.legend()
+plt.tight_layout()
+plt.show()
