@@ -1,0 +1,33 @@
+import numpy as np
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+
+# Generate sample data
+X = np.array([[1], [2], [3], [4], [5]])   # Independent variable
+y = np.array([2, 3, 4, 5, 6])             # Dependent variable
+
+# Create and train the model
+reg = LinearRegression()
+reg.fit(X, y)
+
+# Get slope and intercept
+slope = reg.coef_[0]
+intercept = reg.intercept_
+
+print(f"Slope (Coefficient): {slope:.2f}")
+print(f"Intercept: {intercept:.2f}")
+
+# Predict a new value
+new_x = np.array([[6]])
+predicted_y = reg.predict(new_x)
+
+print(f"Predicted value of X = 6: {predicted_y[0]:.2f}")
+
+# Plot data and regression line
+plt.scatter(X, y, color="blue", label="Data points")
+plt.plot(X, reg.predict(X), color="red", label="Regression line")
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.title("Simple Linear Regression")
+plt.legend()
+plt.show()
