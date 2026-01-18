@@ -1,0 +1,10 @@
+from scipy import integrate
+result, error = integrate.quad(lambda x: x**3, 0, 2)
+print("Integral result:", result)
+print("Estimated error:", error)
+
+from scipy.optimize import minimize
+def func(x):
+    return x**2 + 4*x + 5 
+result = minimize(func, 0)
+print("Minimum value found at:", result.x)
